@@ -1,8 +1,8 @@
 // Creamos el cliente de MongoDB
-var MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 
 // Creamos una variable denominada "db" para almacenar la conexión
-var db = null;
+const db = null;
 
 // Creamos una función para conectarnos con la base de datos
 module.exports.connect = function(url, callback) {
