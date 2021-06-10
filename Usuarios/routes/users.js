@@ -29,6 +29,9 @@ const valid_user = [
 // Método GET para listar usuarios:
 router.get('/', users_controller.users_list);
 
+// Método GET para obtener un usuario en concreto:
+router.get('/:id', users_controller.users_list_byId);
+
 // Método POST para crear usuarios con validaciones:
 router.post('/', valid_user, users_controller.users_create);
 
@@ -37,5 +40,8 @@ router.put('/:id', valid_user, users_controller.users_update_one);
 
 // Método DELETE para borrar usuarios:
 router.delete('/:id', users_controller.users_delete_one);
+
+// Método DELETE para borrar todos los usuarios:
+router.delete('/', users_controller.users_delete_all);
 
 module.exports = router;
