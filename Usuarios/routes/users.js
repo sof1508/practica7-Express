@@ -13,7 +13,7 @@ const valid_user = [
     .isAlpha(locale = 'es-ES', { ignore: '- /' }),
     check('Edad', 'La edad indicada debe estar comprendida entre 0 y 125')
     .isFloat({ min: 0, max: 125 }),
-    check('Dni', 'El dni indicado debe contener 9 caracteres alfanuméricos')
+    check('Dni', 'El dni indicado debe contener 9 caracteres alfanuméricos de la forma 8 números y una letra (12345678A)')
     .isLength({ min: 9, max: 9 })
     .matches(/[0-9]{8}[A-Za-z]{1}/)
     .isAlphanumeric(),
