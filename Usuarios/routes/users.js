@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var users_controller = require('../controllers/usersController');
+const express = require('express');
+const router = express.Router();
+const users_controller = require('../controllers/usersController');
 const { check } = require('express-validator/check');
-
 
 // Reglas de validación:
 const valid_user = [
@@ -16,6 +15,7 @@ const valid_user = [
     .isFloat({ min: 0, max: 125 }),
     check('Dni', 'El dni indicado debe contener 9 caracteres alfanuméricos')
     .isLength({ min: 9, max: 9 })
+    .matches(/[0-9]{8}[A-Za-z]{1}/)
     .isAlphanumeric(),
     check('Cumpleanos', 'El cumpleaños indicado debe especificarse en formato aaaa-mm-dd')
     .isISO8601(),
@@ -29,9 +29,6 @@ const valid_user = [
 // Método GET para listar usuarios:
 router.get('/', users_controller.users_list);
 
-// Método GET para mostrar usuarios con cierto id:
-router.get('/:id', users_controller.users_list_byId);
-
 // Método POST para crear usuarios con validaciones:
 router.post('/', valid_user, users_controller.users_create);
 
@@ -40,9 +37,5 @@ router.put('/:id', valid_user, users_controller.users_update_one);
 
 // Método DELETE para borrar usuarios:
 router.delete('/:id', users_controller.users_delete_one);
-
-// Método DELETE para borrar todos los usuarios:
-router.delete('/', users_controller.users_delete_all);
-
 
 module.exports = router;
